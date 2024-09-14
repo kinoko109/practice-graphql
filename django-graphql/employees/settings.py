@@ -61,6 +61,11 @@ GRAPHQL_JWT = {
     "JWT_EXPIRATION_DELTA": timedelta(minutes=60),
 }
 
+# corsホワイトリスト
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
+
 ROOT_URLCONF = 'employees.urls'
 
 TEMPLATES = [
@@ -91,6 +96,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+GRAPHENE = {
+    "SCHEMA": "employees.schema.schema",
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ]
+}
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 
 # Password validation
