@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { Route,  } from "react-router";
+import { BrowserRouter, Routes } from "react-router-dom";
+
+import Auth from "./components/Auth";
+import Main from "./components/Main";
+
+import styles from './App.module.css';
+
+const apolloClient = new ApolloClient({
+  uri: "http://127.0.0.1:8000/graphql/",
+  headers: {
+    authorization: localStorage.getItem("token") ? `JWT ${localStorage.getItem("token")}` : "",
+  },
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ApolloProvider client={apolloClient}>
+        <div className={styles.App}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" Component={Auth} />
+              <Route path="/employees" Component={Main} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ApolloProvider>
   );
 }
 
