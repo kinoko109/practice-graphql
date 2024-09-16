@@ -40,6 +40,7 @@ class DeptCreateMutation(relay.ClientIDMutation):
             dept_name=input.get('dept_name'),
         )
         department.save()
+        print("hogehoge", department)
 
         return DeptCreateMutation(department=department)
 
