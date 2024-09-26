@@ -2,6 +2,8 @@ import React, { useEffect } from "react"
 import { useQuery } from "@apollo/client"
 import { GET_DEPTS, GET_EMPLOYEES } from "../../queries"
 import { jwtDecode } from "jwt-decode"
+import { Button, Grid, Grid2 } from "@mui/material"
+import { EmployeeList } from "../EmployeeList"
 
 const Main: React.FC = () => {
   const {
@@ -46,9 +48,16 @@ const Main: React.FC = () => {
   return (
     <div>
       <h1>GraphQL lesson</h1>
-      <button type="button" onClick={handleClickLogout}>
+      <Button type="button" size="small" onClick={handleClickLogout}>
         ログアウト
-      </button>
+      </Button>
+      <Grid2 container>
+        <Grid2>
+          <EmployeeList data={dataEmployees} />
+        </Grid2>
+        {/*<Grid2 item xs={4}></Grid2>*/}
+        {/*<Grid2 item xs={3}></Grid2>*/}
+      </Grid2>
     </div>
   )
 }
