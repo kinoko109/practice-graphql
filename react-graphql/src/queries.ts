@@ -77,6 +77,16 @@ export const UPDATE_EMPLOYEE = gql`
         joinYear: $joinYear
         department: $department
       }
-    )
+    ) {
+      employee {
+        id
+        name
+        joinYear
+        department {
+          id
+          deptName
+        }
+      }
+    }
   }
 `
