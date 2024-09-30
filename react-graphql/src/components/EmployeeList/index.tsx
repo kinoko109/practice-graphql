@@ -7,7 +7,7 @@ type Props = {
         node: {
           id: string
           name: string
-          joinYear: string
+          joinYear: number
           department: {
             id: string
             deptName: string

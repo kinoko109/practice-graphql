@@ -4,6 +4,7 @@ import { GET_DEPTS, GET_EMPLOYEES } from "../../queries"
 import { jwtDecode } from "jwt-decode"
 import { Button, Grid, Grid2 } from "@mui/material"
 import { EmployeeList } from "../EmployeeList"
+import { EmployeeCreate } from "../EmployeeCreate"
 
 const Main: React.FC = () => {
   const {
@@ -51,6 +52,9 @@ const Main: React.FC = () => {
       <Button type="button" size="small" onClick={handleClickLogout}>
         ログアウト
       </Button>
+
+      <EmployeeCreate data={dataDepts} />
+
       <Grid2 container>
         <Grid2>
           <EmployeeList data={dataEmployees} />

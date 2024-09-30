@@ -1,24 +1,28 @@
-import React from 'react';
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-import { Route,  } from "react-router";
-import { BrowserRouter, Routes } from "react-router-dom";
+import React from "react"
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import { Route } from "react-router"
+import { BrowserRouter, Routes } from "react-router-dom"
 
-import Auth from "./components/Auth";
-import Main from "./components/Main";
+import Auth from "./components/Auth"
+import Main from "./components/Main"
 
-import styles from './App.module.css';
+import styles from "./App.module.css"
+import { ContextProvider } from "./context"
 
 const apolloClient = new ApolloClient({
   uri: "http://127.0.0.1:8000/graphql/",
   headers: {
-    authorization: localStorage.getItem("token") ? `JWT ${localStorage.getItem("token")}` : "",
+    authorization: localStorage.getItem("token")
+      ? `JWT ${localStorage.getItem("token")}`
+      : "",
   },
   cache: new InMemoryCache(),
-});
+})
 
 function App() {
   return (
-      <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={apolloClient}>
+      <ContextProvider>
         <div className={styles.App}>
           <BrowserRouter>
             <Routes>
@@ -27,8 +31,9 @@ function App() {
             </Routes>
           </BrowserRouter>
         </div>
-      </ApolloProvider>
-  );
+      </ContextProvider>
+    </ApolloProvider>
+  )
 }
 
-export default App;
+export default App
