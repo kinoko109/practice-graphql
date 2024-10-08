@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode"
 import { Button, Grid, Grid2 } from "@mui/material"
 import { EmployeeList } from "../EmployeeList"
 import { EmployeeCreate } from "../EmployeeCreate"
+import { EmployeeDetails } from "../EmployeeDetails"
 
 const Main: React.FC = () => {
   const {
@@ -59,7 +60,9 @@ const Main: React.FC = () => {
         <Grid2>
           <EmployeeList data={dataEmployees} />
         </Grid2>
-        {/*<Grid2 item xs={4}></Grid2>*/}
+        <Grid2>
+          <EmployeeDetails />
+        </Grid2>
         {/*<Grid2 item xs={3}></Grid2>*/}
       </Grid2>
     </div>

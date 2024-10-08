@@ -22,8 +22,14 @@ type Props = {
 }
 
 export const EmployeeList: React.FC<Props> = (props) => {
-  const { setName, setJoinYear, setSelectedDept, setEditId } =
-    useContext(Context)
+  const {
+    setName,
+    setJoinYear,
+    setSelectedDept,
+    setEditId,
+    getSingleEmployee,
+    dataSingleEmployee,
+  } = useContext(Context)
 
   const [deleteEmployee] = useMutation(DELETE_EMPLOYEE, {
     refetchQueries: [
@@ -45,6 +51,14 @@ export const EmployeeList: React.FC<Props> = (props) => {
         alert(error.message)
       }
     }
+    if (id === dataSingleEmployee.employee.id) {
+      // @ts-ignore
+      await getSingleEmployee({
+        varialbles: {
+          id,
+        },
+      })
+    }
   }
 
   const handleClickEditButton = async (
@@ -54,6 +68,23 @@ export const EmployeeList: React.FC<Props> = (props) => {
     setName(edge.node.name)
     setSelectedDept(edge.node.department.id)
     setJoinYear(edge.node.joinYear)
+  }
+
+  const handleClickGetButton = async (
+    edge: Props["data"]["allEmployees"]["edges"][0],
+  ) => {
+    try {
+      // @ts-ignore
+      await getSingleEmployee({
+        variables: {
+          id: edge.node.id,
+        },
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message)
+      }
+    }
   }
 
   return (
@@ -83,6 +114,12 @@ export const EmployeeList: React.FC<Props> = (props) => {
                     onClick={() => handleClickEditButton(edge)}
                   >
                     編集
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleClickGetButton(edge)}
+                  >
+                    詳細
                   </button>
                 </div>
               </li>
