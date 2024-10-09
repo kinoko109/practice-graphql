@@ -12,7 +12,7 @@ export const EmployeeDetails: React.FC = () => {
         <>
           <h3>ID: </h3>
           {dataSingleEmployee.employee.id}
-          <h3>Name: </h3>
+          <h3>Employee Name: </h3>
           {dataSingleEmployee.employee.name}
           <h3>Year of Join: </h3>
           {dataSingleEmployee.employee.joinYear}
