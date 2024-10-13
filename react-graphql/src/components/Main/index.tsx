@@ -7,6 +7,9 @@ import { EmployeeList } from "../EmployeeList"
 import { EmployeeCreate } from "../EmployeeCreate"
 import { EmployeeDetails } from "../EmployeeDetails"
 import { DeptList } from "../DeptList"
+import { FilterByName } from "../FilterByName"
+import { FilterByAnd } from "../FilterByAnd"
+import { Pagination } from "../Pagination"
 
 const Main: React.FC = () => {
   const {
@@ -65,6 +68,18 @@ const Main: React.FC = () => {
           <EmployeeDetails />
         </Grid2>
         <DeptList data={dataDepts} />
+      </Grid2>
+
+      <Grid2 container>
+        <Grid2>
+          <FilterByName />
+        </Grid2>
+        <Grid2>
+          <FilterByAnd />
+        </Grid2>
+        <Grid2>
+          <Pagination />
+        </Grid2>
       </Grid2>
     </div>
   )
