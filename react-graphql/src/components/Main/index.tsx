@@ -2,10 +2,11 @@ import React, { useEffect } from "react"
 import { useQuery } from "@apollo/client"
 import { GET_DEPTS, GET_EMPLOYEES } from "../../queries"
 import { jwtDecode } from "jwt-decode"
-import { Button, Grid, Grid2 } from "@mui/material"
+import { Button, Grid2 } from "@mui/material"
 import { EmployeeList } from "../EmployeeList"
 import { EmployeeCreate } from "../EmployeeCreate"
 import { EmployeeDetails } from "../EmployeeDetails"
+import { DeptList } from "../DeptList"
 
 const Main: React.FC = () => {
   const {
@@ -63,7 +64,7 @@ const Main: React.FC = () => {
         <Grid2>
           <EmployeeDetails />
         </Grid2>
-        {/*<Grid2 item xs={3}></Grid2>*/}
+        <DeptList data={dataDepts} />
       </Grid2>
     </div>
   )
